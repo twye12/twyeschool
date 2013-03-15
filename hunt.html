@@ -1,0 +1,90 @@
+<html>
+<body background="huntimage.jpg">
+<font color="white">
+<head>
+
+
+<IMG STYLE="position:absolute; TOP:50px; LEFT:700px;WIDTH:800; HEIGHT:700px" alt="alternate text" style="float:right" SRC="huntdia.jpg">
+
+<object width="420" height="25"><param name="movie" value="http://www.youtube.com/v/Nf8FCLT8S6A?version=3&amp;hl=en_US&autoplay=1">
+</param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param>
+<embed src="http://www.youtube.com/v/Nf8FCLT8S6A?version=3&amp;hl=en_US&autoplay=1" type="application/x-shockwave-flash" width="420" height="25"
+allowscriptaccess="always" allowfullscreen="false"></embed></object>
+<title>Huntingtons Project</title>
+
+<head>
+
+
+<H2>Huntingtons CAG Finder</H2>
+
+<b>
+Patient's First Name:<input type=text size=20 id="fname"><br>
+Patient's Last Name:<input type=text size=20 id="lname"><br>
+Patient's DNA String:<input type=text size=20 id="dna"><br>      
+<p><button onclick="display()">Find Your CAG Count!</button></p>
+
+<b/>
+
+<p id="num1Display"></p>
+<p id="num2Display"></p>
+<p id="text1Display"></p>
+<p id="text2Display"></p>
+<p id="text3Display"></p>
+<p id="text4Display"></p>
+
+</font>
+<script>
+
+function countCAG(dna) {
+    var start = 0;
+    var threedig = 3;
+    var numCAG = 0;
+    while(start < dna.length){
+        if (dna.slice(start,threedig) == 'CAG')
+            numCAG += 1;
+        else
+            break
+        start += 3;
+        threedig += 3;
+        }
+    return numCAG
+}
+
+function prediction(numCAG) {
+    if(numCAG < 27)
+        return ('Normal, Unaffected');
+    else if (numCAG >= 27 && numCAG <= 35)
+        return ('Intermediate, Unaffected'); 
+    else if (numCAG >= 36 && numCAG <= 41)
+        return ('Reduced Penetrance, Somewhat Affected');
+    else if (numCAG > 41)
+        return ('Full Penetrance, Affected');
+}
+
+
+function display() {
+    var val1 = document.getElementById("fname").value;
+    var val2 = document.getElementById("lname").value;
+    var val3 = countCAG(document.getElementById('dna').value);
+    var val4 = prediction(val3);
+    var val5 = document.getElementById("dna").value;
+    var m1 = "Patient' Name: " + val1 + '   ' + val2
+    var m2 = "DNA sequence: " + val5
+    var m3 = "Number of CAG's: " + val3
+    var m4 = "Diagnosis: " + val4, val6
+    var m5 =""
+
+
+    document.getElementById("num1Display").innerHTML=m1;
+    document.getElementById("num2Display").innerHTML=m2;
+    document.getElementById("text1Display").innerHTML=m3;
+    document.getElementById("text2Display").innerHTML=m4;
+    
+    
+}
+
+alert("Begin");
+</script>
+
+</body>
+</html>
